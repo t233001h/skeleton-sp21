@@ -20,8 +20,28 @@ public class TimeAList {
     public static void main(String[] args) {
         timeAListConstruction();
     }
-
+    private static int thousand=1000;
     public static void timeAListConstruction() {
         // TODO: YOUR CODE HERE
+        AList<Integer> Ns=new AList<>();
+        AList<Double> times=new AList<>();
+        AList<Integer> opCounts=new AList<>();
+        for (int i = 10000; i <=thousand*1000 ; i+=thousand*100) {
+            additem(Ns, times, opCounts, i);
+        }
+        printTimingTable(Ns, times, opCounts);
+
+    }
+
+    public static void additem(AList<Integer> Ns, AList<Double> times, AList<Integer> opCounts,int n){
+        Stopwatch sw = new Stopwatch();
+        AList<Integer> testList=new AList<>();;
+        for (int i = 0; i < n; i++) {
+            testList.addLast(i);
+        }
+        double timeInSeconds = sw.elapsedTime();
+        Ns.addLast(n);
+        times.addLast(timeInSeconds);
+        opCounts.addLast(n);
     }
 }
