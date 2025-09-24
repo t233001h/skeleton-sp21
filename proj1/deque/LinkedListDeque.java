@@ -92,6 +92,13 @@ public class LinkedListDeque<element> implements Deque<element> {
         return temp.item;
     }
 
+    public element getFirst(){
+        if(size==0){
+            return null;
+        }
+        return sentinel.next.item;
+    }
+
     public element getRecursive(int index){
         if(size<index){
             return null;

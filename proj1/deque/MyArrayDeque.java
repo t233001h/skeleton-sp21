@@ -5,7 +5,7 @@ public class MyArrayDeque<element> implements Deque<element> {
     private element[] array;
     private int head;
     private int tail;
-    private int capacity=10;
+    private int capacity=8;
     public MyArrayDeque() {
         array=(element[]) new Object[capacity];
         size=head=0;

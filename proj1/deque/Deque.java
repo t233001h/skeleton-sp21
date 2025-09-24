@@ -18,4 +18,6 @@ public interface Deque<element> {
     element removeLast();
 
     element get(int index);
+
+    element getFirst();
 }
