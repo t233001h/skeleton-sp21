@@ -76,6 +76,7 @@ class Utils {
      *  Throws IllegalArgumentException in case of problems. */
     static <T extends Serializable> T readObject(File file,
                                                  Class<T> expectedClass) {
+        
         try {
             ObjectInputStream in =
                     new ObjectInputStream(new FileInputStream(file));
