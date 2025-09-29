@@ -16,8 +16,8 @@
 # I strongly recommend that you try to figure it out, and where you cannot,
 # that you ask questions.
 
-JFLAGS = -g -Xlint:unchecked -Xlint:deprecation
-
+# 添加编码参数 -encoding UTF-8 解决中文注释问题
+JFLAGS = -encoding UTF-8 -g -Xlint:unchecked -Xlint:deprecation
 CLASSDIR = ../classes
 
 # See comment in ../Makefile

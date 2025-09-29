@@ -1,8 +1,12 @@
 package gitlet;
-
 // TODO: any imports you need here
-
-import java.util.Date; // TODO: You'll likely use this in this class
+// TODO: You'll likely use this in this class
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Date;
+import java.util.List;
 
 /** Represents a gitlet commit object.
  *  TODO: It's a good idea to give a description here of what else this Class
@@ -10,7 +14,7 @@ import java.util.Date; // TODO: You'll likely use this in this class
  *
  *  @author TODO
  */
-public class Commit {
+public class Commit implements Serializable {
     /**
      * TODO: add instance variables here.
      *
@@ -20,7 +24,28 @@ public class Commit {
      */
 
     /** The message of this Commit. */
-    private String message;
 
+
+    private String commitId;
+    private String message;
+    private Date timeStamp;
+    private HashMap<String,String> blobs;
+    private List<String> parents ;
     /* TODO: fill in the rest of this class. */
+
+
+    public Commit() {
+        message = "initial commit";
+        timeStamp = new Date(0);
+        parents=new ArrayList<>();
+        blobs = new HashMap<>();
+        commitId = Utils.sha1(message, timeStamp.toString(),parents.toString(),blobs.toString());
+        //sha1仅接收字符串和byte[],且传入顺序会影响结果
+    }
+
+    public String getCommitId() {
+        return commitId;
+    }
+
+
 }

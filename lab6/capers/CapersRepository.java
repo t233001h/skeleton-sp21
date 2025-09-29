@@ -72,13 +72,14 @@ public class CapersRepository {
     public static void makeDog(String name, String breed, int age) {
         // TODO
         File f=join(DOG_FOLDER,name);
-        if(!f.exists()) {
+        /*if(!f.exists()) {
             try {
                 f.createNewFile();
             } catch (IOException ignore) {
 
             }
-        }
+        }*/
+
         Dog dog=new Dog(name,breed,age);
         dog.saveDog();
         System.out.println(dog);
