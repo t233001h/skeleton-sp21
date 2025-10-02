@@ -97,7 +97,25 @@ public class Repository {
         //├─ staging           # 暂存区文件（记录待提交的新增/删除操作）
 
 
-    public void add(String file){
+    public void add(String fileName){//把文件加入stage
+        Blob blob=new Blob(fileName,CWD);
+        String blobId=blob.getId();
+        //获得head处与stage中与需要add的sha1
+        Commit head=getHead();
+        Stage stage=readObject(STAGE,Stage.class);
+        String headId=head.getBlobs().getOrDefault(fileName,"");//bolbs 为HashMap，使用getOrDefault 从文件名查找对应SHA1，若不存在返回DeFault
+        String stageId=stage.getAdded().getOrDefault(fileName,"");//
+
+        if(blobId.equals(headId)){//文件内容没变，无需修改
+            if(!blobId.equals(stageId)){//stage中文件内容与当前不同，需要修改
+
+            }
+        }
+        //文件内容变了，再判断stage中是否add过
+        else if (!blobId.equals(stageId)) {//需要更新stage
+
+        }
+
 
     }
 
@@ -107,5 +125,40 @@ public class Repository {
         writeObject(file,commit);
     }
 
+    private Commit getHead(){
+        String branchName=getHeadBranchName();//获得分支名
+        File branchFile=getBranchFilefromName(branchName);//从分支名获得分支文件
 
+        //getCommitFromBranchFile
+       Commit head=getCommitFromBracnchFile(branchFile);
+        return head;
+    }
+
+    private String getHeadBranchName(){//获得分支名,
+
+        //注意failure case
+        return readContentsAsString(HEAD);
+    }
+
+    private File getBranchFilefromName(String branchName){//从分支名获得分支文件
+
+
+        //failure case
+
+        return join(HEADS_DIR,branchName);
+    }
+
+    private Commit getCommitFromBracnchFile(File branchFile){
+        String CommitId=readContentsAsString(branchFile);
+        return getCommitFromId(CommitId);
+    }
+
+    private Commit getCommitFromId(String commitId){
+        File commitFile=join(COMMIT_DIR,commitId);
+        return readObject(commitFile,Commit.class);
+    }
+
+    private Stage readStage(){
+        return readObject(STAGE,Stage.class);
+    }
 }

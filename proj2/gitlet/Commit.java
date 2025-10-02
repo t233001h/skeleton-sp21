@@ -3,10 +3,7 @@ package gitlet;
 // TODO: You'll likely use this in this class
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /** Represents a gitlet commit object.
  *  TODO: It's a good idea to give a description here of what else this Class
@@ -29,7 +26,7 @@ public class Commit implements Serializable {
     private String commitId;
     private String message;
     private Date timeStamp;
-    private HashMap<String,String> blobs;
+    private Map<String,String> blobs;  //<fileName,SHA1>
     private List<String> parents ;
     /* TODO: fill in the rest of this class. */
 
@@ -47,5 +44,7 @@ public class Commit implements Serializable {
         return commitId;
     }
 
-
+    public Map<String,String> getBlobs() {
+        return blobs;
+    }
 }
